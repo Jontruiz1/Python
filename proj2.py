@@ -20,3 +20,4 @@ while(a < 4000000):
 
 
 print(sum)
+input()
