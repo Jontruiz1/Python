@@ -1,3 +1,8 @@
+'''
+Alot of these commands are basically useless, I just wanted some commands to test out if the bot was running or if it actually responded to commands
+You don't have to include these
+'''
+
 import discord
 from datetime import datetime
 from discord.ext import commands
