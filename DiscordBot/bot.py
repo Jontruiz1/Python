@@ -31,6 +31,4 @@ async def restart(ctx):
     print('Reloaded extensions')
     await ctx.send('All extensions reloaded')
 
-
-#bot.run('NTQxMTMzMzk3NTQ0NjY1MDk2.XFUvvw.4SN0f66y_i_qN36q_akRPzYgoUk')
-bot.run('NTEwNjQyMDQ3NTQ4NjUzNTY4.W-ZCdw.XArwyI67EeIzXaZypjdqzCcUHYU')
+bot.run('TOKEN')
