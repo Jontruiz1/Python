@@ -1,3 +1,10 @@
+'''
+I don't understand people that like html
+Parsing it is terrible
+
+This is just a cog for getting patch notes for some games me and my friends play
+'''
+
 import discord
 import requests
 import re
@@ -6,6 +13,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+
+#not including the try except gave me errors and I don't understand exactly why but this was a fix
 try:
     import definitions
 except ModuleNotFoundError:
