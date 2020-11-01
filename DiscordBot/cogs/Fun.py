@@ -1,3 +1,8 @@
+'''
+Was planning on adding more fun commands to mess with but I stopped after a coinflip.
+Give some suggestions for what to add
+'''
+
 import discord
 import random
 from discord.ext import commands
