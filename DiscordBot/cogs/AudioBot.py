@@ -1,3 +1,8 @@
+'''
+Started to try to make the bot play music but I got a little tired late in the night
+I might try to finish it up later but my main concern right now is the scraper cog
+'''
+
 import discord
 import nacl
 import asyncio
