@@ -1,8 +1,16 @@
+'''
+Credit to peterjayandrew
+I didn't use the code but ty lol
+'''
+
+
 import re
 import discord
 import requests
 from discord.ext import commands
 from bs4 import BeautifulSoup
+
+
 
 def chunks_of(n, lst):
     '''splits a list into chunks of n'''
