@@ -20,6 +20,7 @@ async def shutdown(ctx):
     print('Logging off')
     await bot.close()
 
+#restart just reloads all the extensions in the cogs for adding new commands within the cogs, reload is probably a better name for it
 @bot.command()
 async def restart(ctx):
     await ctx.send('Reloading extensions')
@@ -31,4 +32,5 @@ async def restart(ctx):
     print('Reloaded extensions')
     await ctx.send('All extensions reloaded')
 
+#replace TOKEN with your own bot token
 bot.run('TOKEN')
