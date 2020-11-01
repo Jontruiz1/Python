@@ -1,6 +1,7 @@
 '''
 Credit to peterjayandrew
-I didn't use the code but ty lol
+I didn't use the code but I might eventually so I'll leave it in here
+Thank you for code
 '''
 
 
