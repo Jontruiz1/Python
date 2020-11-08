@@ -12,13 +12,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
-
-
 #not including the try except gave me errors and I don't understand exactly why but this was a fix
-try:
-    import definitions
-except ModuleNotFoundError:
-    from cogs import definitions
 
 from discord.ext import commands
 from bs4 import BeautifulSoup
@@ -28,7 +22,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/201
 options = FirefoxOptions()
 options.add_argument('--headless')
 options.add_argument('--disable-gpu')  # Last I checked this was necessary.
-driver = webdriver.Firefox(firefox_options=options)
+driver = webdriver.Firefox(executable_path="C:/Users/jontc/Desktop/Jon's Stuff/Code projects/geckodriver", firefox_options=options)
 
 
 class Scraper(commands.Cog):
@@ -44,28 +38,18 @@ class Scraper(commands.Cog):
         page = requests.get(URL, headers=headers)
         soup = BeautifulSoup(page.content, 'html.parser')
         updates = soup.find('div', class_="column small-12 medium-10 large-10 page-content article")
+        #updates = re.sub(r"(\r?\n)+", "\n", updates.get_text())
 
         if len(updates.get_text()) < 2000:
             await ctx.send(updates.get_text())
         else:
             filename = f"Rocket League {soup.find('h1').get_text()}.txt"
-
             with open(filename, "w") as file:
                 file.write(f"Rocket League {updates.get_text()}")
         
             await ctx.send(file=discord.File(f"{filename}"))
-    
-    ''' Parsing Valorants updates html pages is annoying and i don't wanna deal with it rn
-    @commands.command()
-    async def valPatch(self, ctx):
-        driver.get('https://playvalorant.com/en-us/news/')
-        driver.find_element_by_xpath('//a[@href="/en-us/news/game-updates/valorant-patch-notes"]').click()
 
-        URL = driver.current_url
-        page = requests.get(URL, headers=headers)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        updates = soup.find('')
-    '''
+    
 
     @commands.command()
     async def phasPatch(self, ctx):
@@ -74,11 +58,12 @@ class Scraper(commands.Cog):
         soup = BeautifulSoup(page.content, 'html.parser')
         updates = soup.find('div', class_='tabcontent update')
 
+        unwanted = updates.find('ol', class_='sharelinks')
+        unwanted.extract()
+
         if len(updates.get_text()) < 2000:
             await ctx.send(updates.get_text())
         else:
-
-            #await ctx.send(definitions.chunks_of_words(900, updates.get_text()))
             
             filename = f"Phasmophobia {updates.find('h1').get_text()}.txt"
 
@@ -86,8 +71,23 @@ class Scraper(commands.Cog):
                 file.write(f"Phasmophobia {updates.get_text()}")
         
             await ctx.send(file=discord.File(f"{filename}"))
-            
-            
+
+    @commands.command()
+    async def elResults(self, ctx):
+        URL = 'https://www.google.com/search?client=opera-gx&q=election+reuslts&sourceid=opera&ie=UTF-8&oe=UTF-8'
+        page = requests.get(URL, headers=headers)
+        soup = BeautifulSoup(page.content, 'html.parser')
+        biden = soup.find('span', color='#019BD8').get_text()
+        trump = soup.find('span', color='#D81C28').get_text()
+
+        await ctx.send("Biden is at " + biden + " electoral votes\n" + "Trump is at " + trump + " electoral votes")
+
+        if(int(trump) >= 270):
+            await ctx.send('Trump wins')
+        elif(int(biden) >= 270):
+            await ctx.send('Biden wins')
+
+
             
 def setup(bot):
     bot.add_cog(Scraper(bot))
