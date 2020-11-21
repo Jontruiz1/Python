@@ -16,8 +16,7 @@ async def on_ready():
 
 @bot.command()
 async def shutdown(ctx):
-    #This is a personal touch, ignore it :)
-    await ctx.send('Goodnight owo')
+    await ctx.send('Goodnight')
     
     
     print('Logging off')
