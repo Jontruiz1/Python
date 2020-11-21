@@ -68,23 +68,6 @@ class Scraper(commands.Cog):
                 file.write(f"Phasmophobia {updates.get_text()}")
         
             await ctx.send(file=discord.File(f"{filename}"))
-
-    @commands.command()
-    async def elResults(self, ctx):
-        URL = 'https://www.google.com/search?client=opera-gx&q=election+reuslts&sourceid=opera&ie=UTF-8&oe=UTF-8'
-        page = requests.get(URL, headers=headers)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        biden = soup.find('span', color='#019BD8').get_text()
-        trump = soup.find('span', color='#D81C28').get_text()
-
-        await ctx.send("Biden is at " + biden + " electoral votes\n" + "Trump is at " + trump + " electoral votes")
-
-        if(int(trump) >= 270):
-            await ctx.send('Trump wins')
-        elif(int(biden) >= 270):
-            await ctx.send('Biden wins')
-
-
-            
+  
 def setup(bot):
     bot.add_cog(Scraper(bot))
