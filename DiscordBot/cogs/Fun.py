@@ -21,7 +21,8 @@ class Fun(commands.Cog):
             await ctx.send("Heads!")
         else:
             await ctx.send("Tails!")
-
+            
+    #A personal poll bot to see if anyone else wants to play a game, if it reaches the time that is passed in, it pings all the players that reacted to the message
     @commands.command()
     async def amongPoll(self, ctx, arg):
         roleId = 750560026208501800
@@ -34,15 +35,9 @@ class Fun(commands.Cog):
         time = hour + minute
         argTime = float(arg)
 
-        print(time)
-
         sleepTime = (argTime - time) * 3600
 
-        print('Sleeptime Seconds:' , sleepTime)
-
         await asyncio.sleep(int(sleepTime))
-
-        print('slept')
 
         message = await ctx.fetch_message(msg.id)
 
