@@ -1,7 +1,4 @@
 '''
-I don't understand people that like html
-Parsing it is terrible
-
 This is just a cog for getting patch notes for some games me and my friends play
 '''
 
